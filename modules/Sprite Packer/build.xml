@@ -1,9 +1,0 @@
-<project default="build">
-	<property file="builder.properties" />
-
-	<echo>Sprite</echo>
-
-	<target name="build">
-		<echo>Sprite Run: ${CONFIG.PATH}</echo>
-	</target>
-</project>
