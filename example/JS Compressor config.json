@@ -1,0 +1,12 @@
+{
+	"sourceDir": "src",
+	"destinationDir": "output",
+	"gZipped": true,
+	"compile": "simple",
+	"files": {
+		"base.js": {
+			"compile": "advanced",
+			"includes": ["base/"]
+		}
+	}
+}

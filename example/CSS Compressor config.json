@@ -1,0 +1,11 @@
+{
+	"sourceDir": "src",
+	"destinationDir": "output",
+	"gZipped": true,
+	"files": {
+		"base.css": {
+			"includes": ["base/"],
+			"excludes": [".min.css"]
+		}
+	}
+}

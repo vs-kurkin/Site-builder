@@ -1,0 +1,20 @@
+{
+	"libraries": {
+		"JSON": {
+			"language": "javascript",
+			"src": "JSON.js"
+		}
+	},
+	"modules": {
+		"JS Compressor": {
+			"src": "JS Compressor/build.xml",
+			"configs": ["config.json"],
+			"depends": []
+		},
+		"CSS Compressor": {
+			"src": "CSS Compressor/build.xml",
+			"configs": ["config.json"],
+			"depends": []
+		}
+	}
+}
