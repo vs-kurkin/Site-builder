@@ -8,7 +8,7 @@
   Description: Build sources of site with use modules.
   -->
 
-<project name="AMXhost Builder" basedir="." default="build">
+<project name="Site Builder" basedir="." default="build">
 	<!-- Load properties -->
 	<property file="build.properties" />
 
