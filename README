@@ -11,3 +11,5 @@ Site builder состоит из нескольких компонент:
   Java: http://www.java.com/
   JDK: http://www.oracle.com/technetwork/java/javase/downloads/index.html
   ANT: http://ant.apache.org/bindownload.cgi
+
+Примеры конфигураций в папке example.
