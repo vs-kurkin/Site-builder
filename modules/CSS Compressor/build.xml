@@ -1,0 +1,38 @@
+<project default="build">
+	<property file="build.properties" />
+
+	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+		<classpath>
+			<pathelement location="${compiler.path}" />
+			<pathelement location="${compiler.path.task}" />
+		</classpath>
+	</taskdef>
+
+	<target name="concat">
+		<concat destfile="${path.destination}/${file.name}" append="true">
+			<fileset dir="${path.source}"
+							 casesensitive="${casesensitive}"
+							 includes="${file.includes}"
+							 excludes="${file.excludes}" />
+		</concat>
+	</target>
+
+	<target name="compile">
+		<yui-compressor fromdir="${path.destination}"
+										todir="${path.destination}"
+										includes="${file.name}"
+										warn="${compiler.warning}" />
+
+		<move tofile="${path.destination}/${file.name}">
+			<fileset dir="${path.destination}" includes="*-min.*" />
+		</move>
+	</target>
+
+	<target name="gZipped">
+		<gzip src="${path.destination}/${file.name}" destfile="${path.destination}/${file.name}.gz" />
+	</target>
+
+	<target name="build">
+		<script language="javascript" src="${HOMEDIR}/build.js" />
+	</target>
+</project>
