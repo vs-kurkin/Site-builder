@@ -1,10 +1,12 @@
+/*
+ Copyright (c) Site-builder, 2012.
+ Source: https://github.com/B-Vladi/Site-builder
+ Vlad Kurkin, b-vladi@cs-console.ru.
+ */
+
 importClass(java.io.File);
 
-var libProject = project.createSubProject(),
-	pathLibs = project.getProperty('path.libs') + File.separator,
-	LIBS = {},
-	script = libProject.createTask('script'),
-	libData;
+var libProject = project.createSubProject(), pathLibs = project.getProperty('path.libs') + File.separator, LIBS = {}, script = libProject.createTask('script'), libData;
 
 script.setSetBeans(false);
 

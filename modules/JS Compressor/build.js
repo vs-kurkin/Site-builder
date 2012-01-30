@@ -1,8 +1,12 @@
+/*
+ Copyright (c) Site-builder, 2012.
+ Source: https://github.com/B-Vladi/Site-builder
+ Vlad Kurkin, b-vladi@cs-console.ru.
+ */
+
 importClass(java.io.File);
 
-var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')),
-	targets = project.getTargets(),
-	cleanDir = project.createTask('delete');
+var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')), targets = project.getTargets(), cleanDir = project.createTask('delete');
 
 function runTarget(name, properties) {
 	for (var propertyName in properties) {

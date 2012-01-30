@@ -1,3 +1,9 @@
+<!--
+  Copyright (c) Site-builder, 2012.
+  Source: https://github.com/B-Vladi/Site-builder
+  Vlad Kurkin, b-vladi@cs-console.ru.
+  -->
+
 <project default="build">
 	<property file="build.properties" />
 
@@ -10,18 +16,12 @@
 
 	<target name="concat">
 		<concat destfile="${path.destination}/${file.name}" append="true">
-			<fileset dir="${path.source}"
-							 casesensitive="${casesensitive}"
-							 includes="${file.includes}"
-							 excludes="${file.excludes}" />
+			<fileset dir="${path.source}" casesensitive="${casesensitive}" includes="${file.includes}" excludes="${file.excludes}" />
 		</concat>
 	</target>
 
 	<target name="compile">
-		<yui-compressor fromdir="${path.destination}"
-										todir="${path.destination}"
-										includes="${file.name}"
-										warn="${compiler.warning}" />
+		<yui-compressor fromdir="${path.destination}" todir="${path.destination}" includes="${file.name}" warn="${compiler.warning}" />
 
 		<move tofile="${path.destination}/${file.name}">
 			<fileset dir="${path.destination}" includes="*-min.*" />

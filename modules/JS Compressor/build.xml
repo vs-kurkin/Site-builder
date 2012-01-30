@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) Site-builder, 2012.
+  Source: https://github.com/B-Vladi/Site-builder
+  Vlad Kurkin, b-vladi@cs-console.ru.
+  -->
+
 <project default="build">
 	<property file="build.properties" />
 	<taskdef name="compiler" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${compiler.path}" />
 
 	<target name="concat">
 		<concat destfile="${path.destination}/${file.name}" append="true">
-			<fileset dir="${path.source}"
-							 casesensitive="${casesensitive}"
-							 includes="${file.includes}"
-							 excludes="${file.excludes}" />
+			<fileset dir="${path.source}" casesensitive="${casesensitive}" includes="${file.includes}" excludes="${file.excludes}" />
 		</concat>
 	</target>
 
 	<target name="compile">
-		<compiler compilationlevel="${compilation.level}"
-							warning="${warning.level}"
-							output="${file.path}.tmp">
+		<compiler compilationlevel="${compilation.level}" warning="${warning.level}" output="${file.path}.tmp">
 
 			<sources dir="${path.destination}">
 				<file name="${file.name}" />
@@ -25,11 +25,7 @@
 			</externs>
 		</compiler>
 
-		<native2ascii reverse="true"
-									src="${path.destination}"
-									dest="${path.destination}"
-									includes="${file.name}.tmp"
-									ext=".temp" />
+		<native2ascii reverse="true" src="${path.destination}" dest="${path.destination}" includes="${file.name}.tmp" ext=".temp" />
 
 		<move file="${file.path}.temp" tofile="${file.path}" />
 		<delete file="${file.path}.tmp" />

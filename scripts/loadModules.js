@@ -1,3 +1,9 @@
+/*
+ Copyright (c) Site-builder, 2012.
+ Source: https://github.com/B-Vladi/Site-builder
+ Vlad Kurkin, b-vladi@cs-console.ru.
+ */
+
 importClass(java.io.File);
 importClass(org.apache.tools.ant.ProjectHelper);
 importClass(org.apache.tools.ant.Target);
@@ -58,9 +64,7 @@ Module.prototype.run = function (configFilePath) {
 		throw 'Can not find the configuration file in "' + configFilePath + '" for the module "' + this.name + '"';
 	}
 
-	var buffer = new BufferedReader(new FileReader(configFile)),
-		text = '',
-		line;
+	var buffer = new BufferedReader(new FileReader(configFile)), text = '', line;
 
 	while (line = buffer.readLine()) {
 		text += line;

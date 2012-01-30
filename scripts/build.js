@@ -1,10 +1,10 @@
-var stack = [],
-	moduleName = project.getProperty('moduleName'),
-	modulesInStack = {},
-	index = 0,
-	module,
-	depends,
-	length;
+/*
+ Copyright (c) Site-builder, 2012.
+ Source: https://github.com/B-Vladi/Site-builder
+ Vlad Kurkin, b-vladi@cs-console.ru.
+ */
+
+var stack = [], moduleName = project.getProperty('moduleName'), modulesInStack = {}, index = 0, module, depends, length;
 
 if (moduleName == null) {
 	for (var name in MODULES) {

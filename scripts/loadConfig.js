@@ -1,3 +1,9 @@
+/*
+ Copyright (c) Site-builder, 2012.
+ Source: https://github.com/B-Vladi/Site-builder
+ Vlad Kurkin, b-vladi@cs-console.ru.
+ */
+
 importClass(java.io.File);
 importClass(java.io.FileReader);
 importClass(java.io.BufferedReader);
@@ -12,9 +18,7 @@ if (!configFile) {
 	throw 'Can not find configuration file in "' + basedir + File.separator + configFilePath + '"';
 }
 
-var buffer = new BufferedReader(new FileReader(configFile)),
-	cfgString = '',
-	line;
+var buffer = new BufferedReader(new FileReader(configFile)), cfgString = '', line;
 
 while (line = buffer.readLine()) {
 	cfgString += line;
