@@ -15,12 +15,13 @@
 	</taskdef>
 
 	<target name="build">
+		<property file="build.properties" />
 		<property file="${CONFIG.PATH}" />
-		<jsdoctoolkit verbose="${jsdoctoolkit.verbose}"
+		<jsdoctoolkit verbose="${verbose}"
 									jsdochome="${HOMEDIR}/${jsdoctoolkit.dir}/"
 									template="${template.name}"
 									outputdir="${path.output}"
-									depth="${deph}"
+									depth="${depth}"
 									includeprivate="${include.private}"
 									includeunderscored="${include.underscored}"
 									includeundocumented="${include.undocumented}"
