@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) Site-builder, 30.1.2012.
+  Source: https://github.com/B-Vladi/Site-builder
+  Author: Vlad Kurkin, b-vladi@cs-console.ru.
+  -->
+
+<project default="build">
+	<property file="build.properties" />
+
+	<taskdef name="jsdoctoolkit" classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit">
+		<classpath>
+			<pathelement location="${jsdoctoolkit.path.task}" />
+			<pathelement location="${jsdoctoolkit.path.class}" />
+		</classpath>
+	</taskdef>
+
+	<target name="build">
+		<property file="${CONFIG.PATH}" />
+		<jsdoctoolkit verbose="${jsdoctoolkit.verbose}"
+									jsdochome="${HOMEDIR}/${jsdoctoolkit.dir}/"
+									template="${template.name}"
+									outputdir="${path.output}"
+									depth="${deph}"
+									includeprivate="${include.private}"
+									includeunderscored="${include.underscored}"
+									includeundocumented="${include.undocumented}"
+									encoding="${encoding}">
+			<fileset dir="." includes="${path.src.includes}" excludes="${path.src.excludes}" />
+		</jsdoctoolkit>
+	</target>
+</project>
