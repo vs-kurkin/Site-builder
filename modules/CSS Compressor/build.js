@@ -6,17 +6,8 @@
 
 importClass(java.io.File);
 
-var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')), targets = project.getTargets(), cleanDir = project.createTask('delete');
-
-function runTarget(name, properties) {
-	for (var propertyName in properties) {
-		if (properties.hasOwnProperty(propertyName)) {
-			project.setProperty(propertyName, properties[propertyName]);
-		}
-	}
-
-	targets.get(name).execute();
-}
+var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'))
+	,cleanDir = project.createTask('delete');
 
 project.setProperty('path.source', CONFIG.sourceDir);
 project.setProperty('path.destination', CONFIG.destinationDir);
@@ -30,7 +21,7 @@ for (var fileName in CONFIG.files) {
 
 		print(fileData.includes.join(','));
 
-		runTarget('concat', {
+		AntApi.runTarget(project, 'concat', {
 			'file.name': fileName,
 			'file.includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '*',
 			'file.excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '*',
@@ -38,13 +29,13 @@ for (var fileName in CONFIG.files) {
 		});
 
 		if (fileData.compile !== false) {
-			runTarget('compile', {
+			AntApi.runTarget(project, 'compile', {
 				'file.name': fileName
 			});
 		}
 
 		if (CONFIG.gZipped !== false) {
-			runTarget('gZipped', {
+			AntApi.runTarget(project, 'gZipped', {
 				'file.name': fileName
 			});
 		}
