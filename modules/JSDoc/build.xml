@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  Copyright (c) Site-builder, 30.1.2012.
+  Copyright (c) Site-builder, 31.1.2012.
   Source: https://github.com/B-Vladi/Site-builder
   Author: Vlad Kurkin, b-vladi@cs-console.ru.
   -->
@@ -15,7 +15,6 @@
 	</taskdef>
 
 	<target name="build">
-		<property file="build.properties" />
 		<property file="${CONFIG.PATH}" />
 		<jsdoctoolkit verbose="${verbose}"
 									jsdochome="${HOMEDIR}/${jsdoctoolkit.dir}/"
