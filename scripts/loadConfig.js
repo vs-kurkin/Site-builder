@@ -9,8 +9,18 @@ importClass(java.io.FileReader);
 importClass(java.io.BufferedReader);
 
 var configFilePath = project.getProperty('path.config');
+
 if (configFilePath == null || !configFilePath.length) {
-	throw 'Property "path.config" not specified';
+	var input = project.createTask('input');
+	input.setMessage('Enter path to config file');
+	input.setAddproperty('path.config');
+	input.execute();
+
+	configFilePath = project.getProperty('path.config');
+
+	if (!configFilePath.length) {
+		throw 'Property "path.config" not specified';
+	}
 }
 
 var configFile = new File(configFilePath);
