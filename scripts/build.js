@@ -56,6 +56,8 @@ while (module = stack.shift()) {
 	index = 0;
 	length = module.configs.length;
 
+	module.init();
+
 	while (index < length) {
 		module.run(module.configs[index++]);
 	}

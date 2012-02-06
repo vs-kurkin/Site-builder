@@ -87,7 +87,6 @@ for (var name in CONFIG.modules) {
 		}
 
 		var module = new Module(name, CONFIG.modules[name]);
-		module.init();
 
 		if (module.hasOwnProperty('defaultTarget')) {
 			var target = new Target();
