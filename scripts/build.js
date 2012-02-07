@@ -27,11 +27,12 @@ while (true) {
 		if (modulesInStack.hasOwnProperty(moduleName)) {
 			stack.splice(index, 1);
 		} else {
-			depends = module.depends.reverse();
+			var dependsIndex = 0;
+			depends = module.depends;
 			length = depends ? depends.length : 0;
 
-			while (length--) {
-				var dependModuleName = depends[length];
+			while (dependsIndex < length) {
+				var dependModuleName = depends[dependsIndex++];
 
 				if (MODULES.hasOwnProperty(dependModuleName)) {
 					if (!modulesInStack.hasOwnProperty(dependModuleName)) {
