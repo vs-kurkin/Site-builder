@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Site-builder, 30.1.2012.
+ * Copyright (c) Site builder, 7.2.2012.
  * Source: https://github.com/B-Vladi/Site-builder
  * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
@@ -17,6 +17,7 @@ function Module(name, options) {
 		throw 'Can not find build file "' + options.src + '"';
 	}
 
+	this.homeDir = this.buildFile.getParentFile();
 	this.configs = options.configs;
 	this.depends = options.depends;
 	this.name = name;
@@ -39,10 +40,9 @@ function Module(name, options) {
 }
 
 Module.prototype.init = function () {
-	var homeDir = this.buildFile.getParentFile();
 
-	this.project.setBaseDir(homeDir);
-	this.project.setProperty('HOMEDIR', homeDir.getAbsolutePath());
+	this.project.setBaseDir(this.homeDir);
+	this.project.setProperty('HOMEDIR', this.homeDir.getAbsolutePath());
 
 	for (var name in LIBS) {
 		if (LIBS.hasOwnProperty(name)) {
@@ -58,7 +58,7 @@ Module.prototype.run = function (configFilePath) {
 		throw 'Path to the configuration file for the module ' + this.name + ' is not defined';
 	}
 
-	var configFile = new File(configFilePath);
+	var configFile = new File(project.getProperty('CONFIG.DIR'), configFilePath);
 
 	if (!(configFile && configFile.file)) {
 		throw 'Can not find the configuration file in "' + configFilePath + '" for the module "' + this.name + '"';
@@ -71,7 +71,7 @@ Module.prototype.run = function (configFilePath) {
 	}
 
 	this.project.setProperty('CONFIG.TEXT', text);
-	this.project.setProperty('CONFIG.PATH', configFilePath);
+	this.project.setProperty('CONFIG.PATH', configFile.getAbsolutePath());
 
 	this.project.setBaseDir(configFile.getParentFile());
 	this.defaultTarget && this.defaultTarget.execute();

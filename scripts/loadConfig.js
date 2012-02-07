@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Site-builder, 30.1.2012.
+ * Copyright (c) Site builder, 7.2.2012.
  * Source: https://github.com/B-Vladi/Site-builder
  * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
@@ -27,6 +27,8 @@ var configFile = new File(configFilePath);
 if (!configFile) {
 	throw 'Can not find configuration file in "' + basedir + File.separator + configFilePath + '"';
 }
+
+project.setProperty('CONFIG.DIR', configFile.getParentFile());
 
 var buffer = new BufferedReader(new FileReader(configFile)), cfgString = '', line;
 
