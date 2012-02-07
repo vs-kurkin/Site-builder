@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-  Copyright (c) Site builder, 7.2.2012.
+  Copyright (c) Site builder.
   Source: https://github.com/B-Vladi/Site-builder
   Author: Vlad Kurkin, b-vladi@cs-console.ru.
   -->
@@ -15,10 +14,9 @@
 	<target name="build">
 		<property file="${CONFIG.PATH}" />
 		<jshint dir="${basedir}"
-						reportFile="${basedir}/${reportfile}"
 						fail="false"
-						optionsfile="${CONFIG.PATH}"
 						includes="${includes}"
-						excludes="${excludes}" />
+						excludes="${excludes}"
+						reportFile="${basedir}/${reportfile}" />
 	</target>
 </project>
