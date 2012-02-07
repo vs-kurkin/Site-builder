@@ -13,10 +13,13 @@
 
 	<target name="build">
 		<property file="${CONFIG.PATH}" />
+		<script language="javascript" src="${HOMEDIR}/build.js" />
 		<jshint dir="${basedir}"
-						fail="false"
+						fail="${fail}"
 						includes="${includes}"
 						excludes="${excludes}"
-						reportFile="${basedir}/${reportfile}" />
+						reportfile="${reportfile}"
+						options="${options}"
+						optionsfile="${optionsfile}" />
 	</target>
 </project>
