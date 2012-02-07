@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright (c) Site builder, 7.2.2012.
+  Source: https://github.com/B-Vladi/Site-builder
+  Author: Vlad Kurkin, b-vladi@cs-console.ru.
+  -->
+
+<project default="build">
+	<property file="build.properties" />
+	<taskdef name="jshint"
+					 classname="com.philmander.ant.jshint.JsHintAntTask"
+					 classpath="${jshint.path.task}" />
+
+	<target name="build">
+		<property file="${CONFIG.PATH}" />
+		<jshint dir="${basedir}"
+						reportFile="${basedir}/${reportfile}"
+						fail="false"
+						optionsfile="${CONFIG.PATH}"
+						includes="${includes}"
+						excludes="${excludes}" />
+	</target>
+</project>
