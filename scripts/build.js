@@ -27,7 +27,7 @@ while (true) {
 		if (modulesInStack.hasOwnProperty(moduleName)) {
 			stack.splice(index, 1);
 		} else {
-			depends = module.depends;
+			depends = module.depends.reverse();
 			length = depends ? depends.length : 0;
 
 			while (length--) {
