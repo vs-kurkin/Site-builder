@@ -15,21 +15,21 @@
 	</taskdef>
 
 	<target name="concat">
-		<concat destfile="${path.destination}/${file.name}" append="true">
-			<fileset dir="${path.source}" casesensitive="${casesensitive}" includes="${file.includes}" excludes="${file.excludes}" />
+		<concat destfile="${destination.dir}/${file.name}" append="true">
+			<fileset dir="${source.dir}" casesensitive="${casesensitive}" includes="${includes}" excludes="${excludes}" />
 		</concat>
 	</target>
 
 	<target name="compile">
-		<yui-compressor fromdir="${path.destination}" todir="${path.destination}" includes="${file.name}" warn="${compiler.warning}" />
+		<yui-compressor fromdir="${destination.dir}" todir="${destination.dir}" includes="${file.name}" warn="${warning}" />
 
-		<move tofile="${path.destination}/${file.name}">
-			<fileset dir="${path.destination}" includes="*-min.*" />
+		<move tofile="${destination.dir}/${file.name}">
+			<fileset dir="${destination.dir}" includes="*-min.*" />
 		</move>
 	</target>
 
 	<target name="gZipped">
-		<gzip src="${path.destination}/${file.name}" destfile="${path.destination}/${file.name}.gz" />
+		<gzip src="${destination.dir}/${file.name}" destfile="${destination.dir}/${file.name}.gz" />
 	</target>
 
 	<target name="build">

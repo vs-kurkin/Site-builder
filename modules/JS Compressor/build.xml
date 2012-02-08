@@ -9,15 +9,15 @@
 	<taskdef name="compiler" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${compiler.path}" />
 
 	<target name="concat">
-		<concat destfile="${path.destination}/${file.name}" append="true">
-			<fileset dir="${path.source}" casesensitive="${casesensitive}" includes="${file.includes}" excludes="${file.excludes}" />
+		<concat destfile="${destination.dir}/${file.name}" append="true">
+			<fileset dir="${source.dir}" casesensitive="${casesensitive}" includes="${includes}" excludes="${excludes}" />
 		</concat>
 	</target>
 
 	<target name="compile">
-		<compiler compilationlevel="${compilation.level}" warning="${warning.level}" output="${file.path}.tmp">
+		<compiler compilationlevel="${compilation.level}" warning="${warning}" output="${file.path}.tmp">
 
-			<sources dir="${path.destination}">
+			<sources dir="${destination.dir}">
 				<file name="${file.name}" />
 			</sources>
 			<externs dir="${HOMEDIR}">
@@ -25,14 +25,14 @@
 			</externs>
 		</compiler>
 
-		<native2ascii reverse="true" src="${path.destination}" dest="${path.destination}" includes="${file.name}.tmp" ext=".temp" />
+		<native2ascii reverse="true" src="${destination.dir}" dest="${destination.dir}" includes="${file.name}.tmp" ext=".temp" />
 
 		<move file="${file.path}.temp" tofile="${file.path}" />
 		<delete file="${file.path}.tmp" />
 	</target>
 
 	<target name="gZipped">
-		<gzip src="${path.destination}/${file.name}" destfile="${path.destination}/${file.name}.gz" />
+		<gzip src="${destination.dir}/${file.name}" destfile="${destination.dir}/${file.name}.gz" />
 	</target>
 
 	<target name="build">

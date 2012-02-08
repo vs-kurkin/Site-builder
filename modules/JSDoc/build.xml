@@ -9,23 +9,23 @@
 
 	<taskdef name="jsdoctoolkit" classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit">
 		<classpath>
-			<pathelement location="${jsdoctoolkit.path.task}" />
-			<pathelement location="${jsdoctoolkit.path.class}" />
+			<pathelement location="${jsdoc.path.task}" />
+			<pathelement location="${jsdoc.path.class}" />
 		</classpath>
 	</taskdef>
 
 	<target name="build">
 		<property file="${CONFIG.PATH}" />
 		<jsdoctoolkit verbose="${verbose}"
-									jsdochome="${HOMEDIR}/${jsdoctoolkit.dir}/"
-									template="${template.name}"
-									outputdir="${path.output}"
+									jsdochome="${HOMEDIR}/${jsdoc.home}/"
+									template="${template}"
+									outputdir="${output.dir}"
 									depth="${depth}"
 									includeprivate="${include.private}"
 									includeunderscored="${include.underscored}"
 									includeundocumented="${include.undocumented}"
 									encoding="${encoding}">
-			<fileset dir="." includes="${path.src.includes}" excludes="${path.src.excludes}" />
+			<fileset dir="." includes="${includes}" excludes="${excludes}" />
 		</jsdoctoolkit>
 	</target>
 </project>

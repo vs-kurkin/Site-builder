@@ -6,11 +6,11 @@
 
 importClass(java.io.File);
 
-var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'))
-	,cleanDir = project.createTask('delete');
+var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')),
+	cleanDir = project.createTask('delete');
 
-project.setProperty('path.source', CONFIG.sourceDir);
-project.setProperty('path.destination', CONFIG.destinationDir);
+project.setProperty('source.dir', CONFIG.sourceDir);
+project.setProperty('destination.dir', CONFIG.destinationDir);
 
 cleanDir.setDir(new File(basedir + '/' + CONFIG.destinationDir));
 cleanDir.execute();
@@ -19,12 +19,10 @@ for (var fileName in CONFIG.files) {
 	if (CONFIG.files.hasOwnProperty(fileName)) {
 		var fileData = CONFIG.files[fileName];
 
-		print(fileData.includes.join(','));
-
 		AntApi.runTarget(project, 'concat', {
 			'file.name': fileName,
-			'file.includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '*',
-			'file.excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '*',
+			'includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '*',
+			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '*',
 			'casesensitive': fileData.hasOwnProperty('caseSensitive') ? !!fileData.caseSensitive : false
 		});
 
