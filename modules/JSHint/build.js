@@ -1,5 +1,9 @@
 var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'));
 
+if (CONFIG.hasOwnProperty('baseBir')) {
+	project.setBaseDir(CONFIG.baseDir);
+}
+
 project.setProperty('fail', CONFIG.fail === false ? 'false' : 'true');
 project.setProperty('reportfile', CONFIG.hasOwnProperty('reportFile') && CONFIG.reportFile.length ? basedir + '/' + CONFIG.reportFile : '');
 project.setProperty('includes', CONFIG.hasOwnProperty('includes') ? CONFIG.includes.join(',') : '*');
