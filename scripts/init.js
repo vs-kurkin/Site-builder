@@ -6,14 +6,15 @@
 
 importClass(java.io.File);
 
-var pathScripts = project.getProperty('path.scripts') + File.separator, script = project.createTask('script');
+var pathScripts = project.getProperty('scripts.dir') + File.separator,
+	script = project.createTask('script');
 
 script.setLanguage('javascript');
 
 script.setSrc(pathScripts + 'loadConfig.js');
 script.execute();
 
-script.setSrc(pathScripts + 'loadLibs.js');
+script.setSrc(pathScripts + 'loadTools.js');
 script.execute();
 
 script.setSrc(pathScripts + 'loadModules.js');

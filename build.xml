@@ -13,17 +13,17 @@
 	<property file="build.properties" />
 
 	<!-- Load addons -->
-	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${path.addons}/ant-contrib-1.0b3.jar" />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${libs.dir}/ant-contrib-1.0b3.jar" />
 
 	<!-- Define targets -->
 	<target name="Run module" description="Run the specified module.">
-		<script language="javascript" src="${path.scripts}/runModule.js" />
+		<script language="javascript" src="${scripts.dir}/runModule.js" />
 	</target>
 
 	<target name="build" description="Default target. Run all the modules.">
-		<script language="javascript" src="${path.scripts}/build.js" />
+		<script language="javascript" src="${scripts.dir}/build.js" />
 	</target>
 
 	<!-- Initialize -->
-	<script language="javascript" src="${path.scripts}/init.js" />
+	<script language="javascript" src="${scripts.dir}/init.js" />
 </project>

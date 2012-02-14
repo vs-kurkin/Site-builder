@@ -11,10 +11,10 @@ importClass(java.io.FileReader);
 importClass(java.io.BufferedReader);
 
 function Module(name, options) {
-	this.buildFile = new File(project.getProperty('path.modules') + File.separator + options.src);
+	this.buildFile = new File(project.getProperty('modules.dir') + File.separator + name + File.separator + 'build.xml');
 
 	if (!(this.buildFile && this.buildFile.file)) {
-		throw 'Can not find build file "' + options.src + '"';
+		throw 'Can not find build file in "' + this.buildFile.getAbsolutePath() + '"';
 	}
 
 	this.homeDir = this.buildFile.getParentFile();
@@ -40,7 +40,6 @@ function Module(name, options) {
 }
 
 Module.prototype.init = function () {
-
 	this.project.setBaseDir(this.homeDir);
 	this.project.setProperty('HOMEDIR', this.homeDir.getAbsolutePath());
 
@@ -64,7 +63,9 @@ Module.prototype.run = function (configFilePath) {
 		throw 'Can not find the configuration file in "' + configFilePath + '" for the module "' + this.name + '"';
 	}
 
-	var buffer = new BufferedReader(new FileReader(configFile)), text = '', line;
+	var buffer = new BufferedReader(new FileReader(configFile)),
+		text = '',
+		line;
 
 	while (line = buffer.readLine()) {
 		text += line;
@@ -80,13 +81,13 @@ Module.prototype.run = function (configFilePath) {
 var MODULES = {};
 project.addReference('MODULES', MODULES);
 
-for (var name in CONFIG.modules) {
-	if (CONFIG.modules.hasOwnProperty(name)) {
+for (var name in CONFIG) {
+	if (CONFIG.hasOwnProperty(name)) {
 		if (MODULES.hasOwnProperty(name)) {
 			throw 'The module "' + name + '" already exist';
 		}
 
-		var module = new Module(name, CONFIG.modules[name]);
+		var module = new Module(name, CONFIG[name]);
 
 		if (module.hasOwnProperty('defaultTarget')) {
 			var target = new Target();

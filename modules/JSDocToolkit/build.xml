@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) Site builder.
+  Source: https://github.com/B-Vladi/Site-builder
+  Author: Vlad Kurkin, b-vladi@cs-console.ru.
+  -->
+
+<project default="build">
+	<property file="build.properties" />
+
+	<taskdef name="jsdoctoolkit"
+					 classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit"
+					 classpath="${jsdoc.path.task}:${jsdoc.path.rhino}"
+					 loaderref="task.loader" />
+
+	<typedef name="Arg"
+					 classname="uk.co.darrenhurley.ant.types.Arg"
+					 loaderref="task.loader" />
+
+	<target name="build">
+		<script language="javascript" src="${HOMEDIR}/build.js" />
+	</target>
+</project>

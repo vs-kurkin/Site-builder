@@ -4,7 +4,13 @@
  * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
-var stack = [], moduleName = project.getProperty('moduleName'), modulesInStack = {}, index = 0, module, depends, length;
+var stack = [],
+	moduleName = project.getProperty('moduleName'),
+	modulesInStack = {},
+	index = 0,
+	module,
+	depends,
+	length;
 
 if (moduleName == null) {
 	for (var name in MODULES) {
