@@ -14,6 +14,9 @@
 		</classpath>
 	</taskdef>
 
+	<script language="javascript" src="${TOOLDIR}/JSON.js" />
+	<script language="javascript" src="${TOOLDIR}/AntApi.js" />
+
 	<target name="concat">
 		<concat destfile="${destination.dir}/${file.name}" append="true">
 			<fileset dir="${source.dir}" casesensitive="${casesensitive}" includes="${includes}" excludes="${excludes}" />

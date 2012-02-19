@@ -1,7 +1,9 @@
+importClass(java.io.File);
+
 var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'));
 
-if (CONFIG.hasOwnProperty('baseBir')) {
-	project.setBaseDir(CONFIG.baseDir);
+if (CONFIG.hasOwnProperty('baseDir')) {
+	project.setBaseDir(new File(basedir, CONFIG.baseDir));
 }
 
 project.setProperty('fail', CONFIG.fail === false ? 'false' : 'true');
@@ -14,7 +16,9 @@ if (CONFIG.hasOwnProperty('options')) {
 	var options = '';
 
 	for (var name in CONFIG.options) {
-		options += name + '=' + CONFIG.options[name] + ',';
+		if (CONFIG.options.hasOwnProperty(name)) {
+			options += name + '=' + CONFIG.options[name] + ',';
+		}
 	}
 
 	project.setProperty('options', options);

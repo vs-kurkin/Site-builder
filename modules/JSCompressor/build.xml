@@ -6,7 +6,11 @@
 
 <project default="build">
 	<property file="build.properties" />
+
 	<taskdef name="compiler" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${compiler.path}" />
+
+	<script language="javascript" src="${TOOLDIR}/JSON.js" />
+	<script language="javascript" src="${TOOLDIR}/AntApi.js" />
 
 	<target name="concat">
 		<concat destfile="${destination.dir}/${file.name}" append="true">
@@ -25,7 +29,11 @@
 			</externs>
 		</compiler>
 
-		<native2ascii reverse="true" src="${destination.dir}" dest="${destination.dir}" includes="${file.name}.tmp" ext=".temp" />
+		<native2ascii reverse="true"
+									src="${destination.dir}"
+									dest="${destination.dir}"
+									includes="${file.name}.tmp"
+									ext=".temp" />
 
 		<move file="${file.path}.temp" tofile="${file.path}" />
 		<delete file="${file.path}.tmp" />

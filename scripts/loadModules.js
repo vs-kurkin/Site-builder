@@ -1,7 +1,7 @@
 /*
- * Copyright (c) Site builder.
- * Source: https://github.com/B-Vladi/Site-builder
- * Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ Copyright (c) Site builder.
+ Source: https://github.com/B-Vladi/Site-builder
+ Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 importClass(java.io.File);
@@ -22,6 +22,12 @@ function Module(name, options) {
 	this.depends = options.depends;
 	this.name = name;
 	this.project = project.createSubProject();
+}
+
+Module.prototype.init = function () {
+	this.project.setBaseDir(this.homeDir);
+	this.project.setProperty('HOMEDIR', this.homeDir.getAbsolutePath());
+	this.project.setProperty('TOOLDIR', project.getProperty('tools.dir'));
 
 	ProjectHelper.configureProject(this.project, this.buildFile);
 
@@ -31,24 +37,12 @@ function Module(name, options) {
 		this.project.addBuildListener(elements.nextElement());
 	}
 
+	var defaultTargetName = this.project.getDefaultTarget();
+	if (defaultTargetName != null) {
+		this.defaultTarget = this.project.getTargets().get(defaultTargetName);
+	}
+
 	this.globalTarget = this.project.getTargets().get('');
-
-	var defaulttargetName = this.project.getDefaultTarget();
-	if (defaulttargetName != null) {
-		this.defaultTarget = this.project.getTargets().get(defaulttargetName);
-	}
-}
-
-Module.prototype.init = function () {
-	this.project.setBaseDir(this.homeDir);
-	this.project.setProperty('HOMEDIR', this.homeDir.getAbsolutePath());
-
-	for (var name in LIBS) {
-		if (LIBS.hasOwnProperty(name)) {
-			this.project.addReference(name, LIBS[name]);
-		}
-	}
-
 	this.globalTarget.execute();
 };
 
@@ -87,24 +81,20 @@ for (var name in CONFIG) {
 			throw 'The module "' + name + '" already exist';
 		}
 
-		var module = new Module(name, CONFIG[name]);
+		var module = MODULES[name] = new Module(name, CONFIG[name]);
 
-		if (module.hasOwnProperty('defaultTarget')) {
-			var target = new Target();
-			target.setName(name);
-			project.addTarget(target);
+		var target = new Target();
+		target.setName(name);
+		project.addTarget(target);
 
-			var property = project.createTask('property');
-			property.setName('moduleName');
-			property.setValue(name);
-			target.addTask(property);
+		var property = project.createTask('property');
+		property.setName('moduleName');
+		property.setValue(name);
+		target.addTask(property);
 
-			var script = project.createTask('script');
-			script.setLanguage('javascript');
-			script.addText('project.executeTarget("' + project.getDefaultTarget() + '");');
-			target.addTask(script);
-
-			MODULES[name] = module;
-		}
+		var script = project.createTask('script');
+		script.setLanguage('javascript');
+		script.addText('project.executeTarget("' + project.getDefaultTarget() + '");');
+		target.addTask(script);
 	}
 }

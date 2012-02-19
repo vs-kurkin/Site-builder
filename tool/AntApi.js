@@ -4,7 +4,7 @@
  * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
-project.addReference('EXPORT', {
+project.addReference('AntApi', {
 	runTarget: function (project, name, properties) {
 		for (var propertyName in properties) {
 			if (properties.hasOwnProperty(propertyName)) {

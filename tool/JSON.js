@@ -80,7 +80,7 @@ function stringify(value) {
 	return '';
 }
 
-project.addReference('EXPORT', {
+project.addReference('JSON', {
 	stringify: stringify,
 	parse: function (json) {
 		try {

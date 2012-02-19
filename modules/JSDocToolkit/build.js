@@ -2,73 +2,94 @@ importClass(java.io.File);
 
 var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'));
 
-if (CONFIG.hasOwnProperty('baseBir')) {
-	project.setBaseDir(CONFIG.baseDir);
+if (CONFIG.hasOwnProperty('baseDir')) {
+	project.setBaseDir(new File(basedir, CONFIG.baseDir));
 }
 
-var jsDocToolkit = project.createTask('jsdoctoolkit');
-jsDocToolkit.setJsdochome(HOMEDIR + '/' + project.getProperty('jsdoc.home') + '/');
+var JSDocHome = HOMEDIR + '/' + project.getProperty('jsdoc.home');
+var javaTask = project.createTask('java');
 
-jsDocToolkit.setTemplate(CONFIG.template || 'jsdoc');
-jsDocToolkit.setOutputdir(CONFIG.outputDir || basedir);
+javaTask.setFork(true);
+javaTask.setDir(new File(JSDocHome));
+javaTask.setJar(new File(JSDocHome, 'jsrun.jar'));
 
-if (typeof CONFIG.inputDir == 'string' && CONFIG.inputDir.length) {
-	jsDocToolkit.setInputdir(CONFIG.inputDir);
-
-	if (!isNaN(Number(CONFIG.depth)) && CONFIG.depth >= 0) {
-		jsDocToolkit.setDepth(CONFIG.depth);
-	}
-
-	if (CONFIG.extensions && CONFIG.extensions.length) {
-		jsDocToolkit.setExtensions(CONFIG.extensions.join(','));
-	}
+if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile !== '') {
+	javaTask.createArg().setValue('-c=' + CONFIG.configFile);
+	javaTask.createArg().setValue('-j=app/run.js');
+	javaTask.execute();
 } else {
-	var fileSet = project.createDataType('fileset');
-	fileSet.setDir(new File(basedir));
+	javaTask.createArg().setValue('app/run.js');
+	javaTask.createArg().setValue('-t=' + 'templates/' + (CONFIG.template || 'jsdoc'));
+	javaTask.createArg().setValue('-d=' + new File(basedir, CONFIG.outputDir || '.').getAbsolutePath());
+	javaTask.createArg().setValue('-e=' + (CONFIG.encoding || 'UTF-8'));
+	javaTask.createArg().setValue('-x=' + (CONFIG.extension || 'js'));
 
-	if (CONFIG.includes) {
-		fileSet.setIncludes(CONFIG.includes.join(','));
+	if (CONFIG.hasOwnProperty('isUndocumentedFunctions') && CONFIG.isUndocumentedFunctions === true) {
+		javaTask.createArg().setValue('-a');
 	}
 
-	if (CONFIG.excludes) {
-		fileSet.setExcludes(CONFIG.excludes.join(','));
+	if (CONFIG.hasOwnProperty('isSuppressSourceOut') && CONFIG.isSuppressSourceOut === true) {
+		javaTask.createArg().setValue('-s');
 	}
 
-	jsDocToolkit.addFileSet(fileSet);
-}
-
-
-if (typeof CONFIG.includeUnderscored == 'boolean') {
-	jsDocToolkit.setIncludeunderscored(CONFIG.includeUnderscored);
-}
-
-if (typeof CONFIG.includeUndocumented == 'boolean') {
-	jsDocToolkit.setIncludeundocumented(CONFIG.includeUndocumented);
-}
-
-if (typeof CONFIG.includePrivate == 'boolean') {
-	jsDocToolkit.setIncludeprivate(CONFIG.includePrivate);
-}
-
-if (typeof CONFIG.verbose == 'boolean') {
-	jsDocToolkit.setVerbose(CONFIG.verbose);
-}
-
-if (typeof CONFIG.logFile == 'string' && CONFIG.logFile.length) {
-	jsDocToolkit.setLog(CONFIG.logFile);
-}
-
-if (typeof CONFIG.encoding == 'string' && CONFIG.encoding.length) {
-	jsDocToolkit.setLog(CONFIG.encoding);
-}
-
-if (CONFIG.arguments) {
-	for (var name in CONFIG.arguments) {
-		var argument = project.createDataType('Arg');
-		argument.setName(name);
-		argument.setValue(CONFIG.arguments[name]);
-		jsDocToolkit.addArg(argument);
+	if (CONFIG.hasOwnProperty('isUnderscoredFunctions') && CONFIG.isUnderscoredFunctions === true) {
+		javaTask.createArg().setValue('-A');
 	}
-}
 
-jsDocToolkit.execute();
+	if (CONFIG.hasOwnProperty('isPrivate') && CONFIG.isPrivate === true) {
+		javaTask.createArg().setValue('-p');
+	}
+
+	if (CONFIG.hasOwnProperty('isVerbose') && CONFIG.isVerbose === true) {
+		javaTask.createArg().setValue('-v');
+	}
+
+	if (CONFIG.hasOwnProperty('logFile') && CONFIG.logFile !== '') {
+		javaTask.createArg().setValue('-o=' + CONFIG.logFile);
+	}
+
+	if (CONFIG.hasOwnProperty('inputDir') && CONFIG.inputDir !== '') {
+		var depth = Number(CONFIG.depth),
+			arg = javaTask.createArg();
+
+		if (isNaN(depth)) {
+			arg.setValue('-r=10');
+		} else if (depth < 0) {
+			arg.setValue('-r');
+		} else {
+			arg.setValue('-r=' + depth);
+		}
+
+		javaTask.createArg().setValue(CONFIG.inputDir);
+	} else {
+		var fileSet = project.createDataType('fileset');
+		fileSet.setDir(project.getBaseDir());
+
+		if (CONFIG.hasOwnProperty('excludes')) {
+			fileSet.setExcludes(CONFIG.excludes.join(','));
+		}
+
+		if (CONFIG.hasOwnProperty('includes')) {
+			fileSet.setIncludes(CONFIG.includes.join(','));
+		}
+
+		var iterator = fileSet.iterator();
+
+		while (iterator.hasNext()) {
+			javaTask.createArg().setValue(iterator.next());
+		}
+	}
+
+	if (CONFIG.hasOwnProperty('arguments')) {
+		var arguments = CONFIG.arguments;
+		for (var name in arguments) {
+			if (arguments.hasOwnProperty(name)) {
+				javaTask.createArg().setValue('-D=' + name + ':' + arguments[name]);
+			}
+		}
+	}
+
+	javaTask.createArg().setValue('-j=app/run.js');
+
+	javaTask.execute();
+}

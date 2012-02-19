@@ -9,6 +9,10 @@ importClass(java.io.File);
 var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')),
 	cleanDir = project.createTask('delete');
 
+if (CONFIG.hasOwnProperty('baseDir')) {
+	project.setBaseDir(new File(basedir, CONFIG.baseDir));
+}
+
 project.setProperty('source.dir', CONFIG.sourceDir);
 project.setProperty('destination.dir', CONFIG.destinationDir);
 

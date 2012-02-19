@@ -7,14 +7,7 @@
 <project default="build">
 	<property file="build.properties" />
 
-	<taskdef name="jsdoctoolkit"
-					 classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit"
-					 classpath="${jsdoc.path.task}:${jsdoc.path.rhino}"
-					 loaderref="task.loader" />
-
-	<typedef name="Arg"
-					 classname="uk.co.darrenhurley.ant.types.Arg"
-					 loaderref="task.loader" />
+	<script language="javascript" src="${TOOLDIR}/JSON.js" />
 
 	<target name="build">
 		<script language="javascript" src="${HOMEDIR}/build.js" />
