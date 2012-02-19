@@ -13,12 +13,11 @@ javaTask.setFork(true);
 javaTask.setDir(new File(JSDocHome));
 javaTask.setJar(new File(JSDocHome, 'jsrun.jar'));
 
+javaTask.createArg().setValue('app/run.js');
+
 if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile != '') {
 	javaTask.createArg().setValue('-c=' + CONFIG.configFile);
-	javaTask.createArg().setValue('-j=app/run.js');
-	javaTask.execute();
 } else {
-	javaTask.createArg().setValue('app/run.js');
 	javaTask.createArg().setValue('-t=' + 'templates' + File.separator + (CONFIG.template || 'jsdoc'));
 	javaTask.createArg().setValue('-d=' + new File(basedir, CONFIG.outputDir || '.').getAbsolutePath());
 	javaTask.createArg().setValue('-e=' + (CONFIG.encoding || 'UTF-8'));
@@ -88,8 +87,8 @@ if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile != '') {
 			}
 		}
 	}
-
-	javaTask.createArg().setValue('-j=app/run.js');
-
-	javaTask.execute();
 }
+
+javaTask.createArg().setValue('-j=app/run.js');
+
+javaTask.execute();
