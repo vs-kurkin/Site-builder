@@ -13,7 +13,7 @@ javaTask.setFork(true);
 javaTask.setDir(new File(JSDocHome));
 javaTask.setJar(new File(JSDocHome, 'jsrun.jar'));
 
-if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile !== '') {
+if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile != '') {
 	javaTask.createArg().setValue('-c=' + CONFIG.configFile);
 	javaTask.createArg().setValue('-j=app/run.js');
 	javaTask.execute();
@@ -44,11 +44,11 @@ if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile !== '') {
 		javaTask.createArg().setValue('-v');
 	}
 
-	if (CONFIG.hasOwnProperty('logFile') && CONFIG.logFile !== '') {
+	if (CONFIG.hasOwnProperty('logFile') && CONFIG.logFile != '') {
 		javaTask.createArg().setValue('-o=' + CONFIG.logFile);
 	}
 
-	if (CONFIG.hasOwnProperty('inputDir') && CONFIG.inputDir !== '') {
+	if (CONFIG.hasOwnProperty('inputDir') && CONFIG.inputDir != '') {
 		var depth = Number(CONFIG.depth),
 			arg = javaTask.createArg();
 
