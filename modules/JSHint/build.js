@@ -6,11 +6,17 @@ if (CONFIG.hasOwnProperty('baseDir')) {
 	project.setBaseDir(new File(basedir, CONFIG.baseDir));
 }
 
-project.setProperty('fail', CONFIG.fail === false ? 'false' : 'true');
-project.setProperty('reportfile', CONFIG.hasOwnProperty('reportFile') && CONFIG.reportFile.length ? basedir + '/' + CONFIG.reportFile : '');
-project.setProperty('includes', CONFIG.hasOwnProperty('includes') ? CONFIG.includes.join(',') : '*');
-project.setProperty('excludes', CONFIG.hasOwnProperty('excludes') ? CONFIG.includes.join(',') : '*');
-project.setProperty('optionsfile', CONFIG.hasOwnProperty('optionsFile') && CONFIG.optionsFile.length ? basedir + '/' + CONFIG.optionsFile : '');
+var JSHint = project.createTask('jshint');
+
+JSHint.setDir(project.getBaseDir());
+
+if (CONFIG.hasOwnProperty('optionsFile') && CONFIG.optionsFile != '') {
+	JSHint.setOptionsFile(CONFIG.optionsFile);
+}
+
+if (CONFIG.hasOwnProperty('reportFile') && CONFIG.reportFile != '') {
+	JSHint.setReportFile(CONFIG.reportFile);
+}
 
 if (CONFIG.hasOwnProperty('options')) {
 	var options = '';
@@ -21,5 +27,12 @@ if (CONFIG.hasOwnProperty('options')) {
 		}
 	}
 
-	project.setProperty('options', options);
+	JSHint.setOptions(options);
 }
+
+JSHint.setFail(CONFIG.fail !== false);
+
+JSHint.setIncludes(CONFIG.hasOwnProperty('includes') ? CONFIG.includes.join(',') : '*');
+JSHint.setExcludes(CONFIG.hasOwnProperty('excludes') ? CONFIG.includes.join(',') : '*');
+
+JSHint.execute();
