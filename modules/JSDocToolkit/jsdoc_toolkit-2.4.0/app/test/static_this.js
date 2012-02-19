@@ -4,7 +4,7 @@ var box = {};
 /** @namespace */
 box.holder = {}
 
-box.holder.foo = function () {
+box.holder.foo = function() {
 	/** the counter */
 	this.counter = 1;
 }

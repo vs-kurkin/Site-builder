@@ -1,11 +1,11 @@
 function example(/**Circle*/a, b) {
-	/** a global defined in function	*/
+	/** a global defined in function  */
 	var number = a;
-
-	var hideNumber = function () {
+	
+	var hideNumber = function(){
 	}
-
-	setNumber = function () {
+	
+	setNumber = function(){
 	}
 	alert('You have chosen: ' + b);
 }
@@ -21,5 +21,5 @@ function initPage() {
 /** an example var */
 var document = new Document(x, y);
 
-var getNumber = function () {
+var getNumber = function(){
 }

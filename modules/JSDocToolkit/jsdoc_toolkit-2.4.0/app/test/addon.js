@@ -1,24 +1,24 @@
-String.prototype.reverse = function () {
+String.prototype.reverse = function() {
 }
 
-String.prototype.reverse.utf8 = function () {
+String.prototype.reverse.utf8 = function() {
 }
 
-Function.count = function () {
-}
-
-/** @memberOf Function */
-Function.count.reset = function () {
+Function.count = function() {
 }
 
 /** @memberOf Function */
-count.getValue = function () {
+Function.count.reset = function() {
+}
+
+/** @memberOf Function */
+count.getValue = function() {
 }
 
 /** @memberOf Function.prototype */
-getSig = function () {
+getSig = function() {
 }
 
 /** @memberOf Function.prototype */
-Function.prototype.getProps = function () {
+Function.prototype.getProps = function() {
 }

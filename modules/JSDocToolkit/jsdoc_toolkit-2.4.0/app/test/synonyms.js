@@ -1,23 +1,23 @@
 /**
- @class
-	 @inherits Bar#zop as #my_zop
- */
+	@class
+	@inherits Bar#zop as #my_zop
+*/
 function Foo() {
 	/** this is a zip. */
-	this.zip = function () {}
-
+	this.zip = function() {}
+	
 	/** from Bar */
 	this.my_zop = new Bar().zop;
 }
 
 /**
- @class
-	 @borrows Foo#zip as this.my_zip
- */
+	@class
+	@borrows Foo#zip as this.my_zip
+*/
 function Bar() {
 	/** this is a zop. */
-	this.zop = function () {}
-
+	this.zop = function() {}
+	
 	/** from Foo */
 	this.my_zip = new Foo().zip;
 }
@@ -25,7 +25,7 @@ function Bar() {
 /** @namespace */
 var myObject = {
 	/**
-	 @type function
-	 */
+		@type function
+	*/
 	myFunc: getFunction()
 }

@@ -23,7 +23,7 @@
  * @function
  * @fires Kitchen#event:cakeEaten
  */
-
+ 
 /**
  * @name Bakery
  * @constructor
@@ -46,7 +46,7 @@ function CakeShop() {
 }
 
 /** @event */
-CakeShop.prototype.icingReady = function (isPink) {
+CakeShop.prototype.icingReady = function(isPink) {
 }
 
 /** @event */

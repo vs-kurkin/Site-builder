@@ -1,10 +1,10 @@
 /** the options */
 opt = Opt.get(
-	arguments,
+	arguments, 
 	{
-		d: "directory",
-		c: "conf",
-		"D[]": "define"
+	 d: "directory",
+	 c: "conf",
+	 "D[]": "define"
 	}
 );
 

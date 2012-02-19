@@ -4,12 +4,12 @@ function Article() {
 
 Article.prototype = {
 	/** @constructor */
-	Title: function (title) {
+	Title: function(title) {
 		/** the value of the Title instance */
 		this.title = title;
 	},
-
-	init: function (pages) {
+	
+	init: function(pages) {
 		/** the value of the pages of the Article instance */
 		this.pages = pages;
 	}

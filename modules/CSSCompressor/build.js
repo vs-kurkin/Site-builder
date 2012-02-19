@@ -16,7 +16,7 @@ if (CONFIG.hasOwnProperty('baseDir')) {
 project.setProperty('source.dir', CONFIG.sourceDir);
 project.setProperty('destination.dir', CONFIG.destinationDir);
 
-cleanDir.setDir(new File(basedir + '/' + CONFIG.destinationDir));
+cleanDir.setDir(new File(project.getBaseDir(), CONFIG.destinationDir));
 cleanDir.execute();
 
 for (var fileName in CONFIG.files) {

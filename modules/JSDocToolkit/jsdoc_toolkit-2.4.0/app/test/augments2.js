@@ -1,26 +1,26 @@
 /**
- @constructor
- */
+@constructor
+*/
 function LibraryItem() {
-	this.reserve = function () {
+	this.reserve = function() {
 	}
 }
 
 /**
- @constructor
- */
+@constructor
+*/
 function Junkmail() {
-	this.annoy = function () {
+	this.annoy = function() {
 	}
 }
 
 /**
- @inherits Junkmail.prototype.annoy as pester
- @augments ThreeColumnPage
- @augments LibraryItem
- @constructor
- */
+@inherits Junkmail.prototype.annoy as pester
+@augments ThreeColumnPage
+@augments LibraryItem
+@constructor
+*/
 function NewsletterPage() {
-	this.getHeadline = function () {
+	this.getHeadline = function() {
 	}
 }

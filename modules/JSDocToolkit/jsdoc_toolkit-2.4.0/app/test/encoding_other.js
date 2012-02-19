@@ -1,10 +1,11 @@
+
 /**
  * @Constructor
- * @desc пїЅпїЅпїЅпїЅ
- * @class пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+ * @desc рпоЫ
+ * @class Яабвгдежзизмлкноп °±ІіґµЎ¶·ё№
  */
 function Test(conf) {
-	// do something;
+    // do something;
 }
 
 // run with commanline option -e=iso-8859-5

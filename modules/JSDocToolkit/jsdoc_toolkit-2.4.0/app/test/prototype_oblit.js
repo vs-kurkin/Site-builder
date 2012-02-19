@@ -4,10 +4,10 @@ function Article() {
 
 Article.prototype = {
 	/** instance get title */
-	getTitle: function () {
+	getTitle: function(){
 	}
 }
 
 /** static get title */
-Article.getTitle = function () {
+Article.getTitle = function(){
 }

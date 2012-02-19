@@ -19,7 +19,7 @@ if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile != '') {
 	javaTask.execute();
 } else {
 	javaTask.createArg().setValue('app/run.js');
-	javaTask.createArg().setValue('-t=' + 'templates/' + (CONFIG.template || 'jsdoc'));
+	javaTask.createArg().setValue('-t=' + 'templates' + File.separator + (CONFIG.template || 'jsdoc'));
 	javaTask.createArg().setValue('-d=' + new File(basedir, CONFIG.outputDir || '.').getAbsolutePath());
 	javaTask.createArg().setValue('-e=' + (CONFIG.encoding || 'UTF-8'));
 	javaTask.createArg().setValue('-x=' + (CONFIG.extension || 'js'));

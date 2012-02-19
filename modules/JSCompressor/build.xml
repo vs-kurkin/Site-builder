@@ -20,7 +20,6 @@
 
 	<target name="compile">
 		<compiler compilationlevel="${compilation.level}" warning="${warning}" output="${file.path}.tmp">
-
 			<sources dir="${destination.dir}">
 				<file name="${file.name}" />
 			</sources>

@@ -1,19 +1,19 @@
 /**
  @name Response
  @class
- */
+*/
 
 Response.prototype = {
 	/**
 	 @name Response#text
 	 @function
 	 @description
-	 Gets the body of the response as plain text
+		Gets the body of the response as plain text
 	 @returns {String}
-	 Response as text
-	 */
+		Response as text
+	*/
 
-	text: function () {
+	text: function() {
 		return this.nativeResponse.responseText;
 	}
 }

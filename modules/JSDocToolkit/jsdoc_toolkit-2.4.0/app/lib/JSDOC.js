@@ -1,26 +1,26 @@
 /**
- @overview
- @date $Date: 2010-06-13 22:02:44 +0100 (Sun, 13 Jun 2010) $
- @version $Revision: 837 $
- @location $HeadURL: https://jsdoc-toolkit.googlecode.com/svn/tags/jsdoc_toolkit-2.4.0/jsdoc-toolkit/app/lib/JSDOC.js $
- @name JSDOC.js
+	@overview
+	@date $Date: 2010-06-13 22:02:44 +0100 (Sun, 13 Jun 2010) $
+	@version $Revision: 837 $ 
+	@location $HeadURL: https://jsdoc-toolkit.googlecode.com/svn/tags/jsdoc_toolkit-2.4.0/jsdoc-toolkit/app/lib/JSDOC.js $
+	@name JSDOC.js
  */
 
 /**
- This is the main container for the JSDOC application.
- @namespace
- */
+	This is the main container for the JSDOC application.
+	@namespace
+*/
 JSDOC = {
 };
 
 /**
- @requires Opt
+	@requires Opt
  */
 if (typeof arguments == "undefined") arguments = [];
 JSDOC.opt = Opt.get(
-	arguments,
+	arguments, 
 	{
-		a: "allfunctions",
+		a: "allfunctions", 
 		c: "conf",
 		d: "directory",
 		"D[]": "define",
@@ -47,7 +47,7 @@ JSDOC.opt = Opt.get(
 JSDOC.VERSION = "2.4.0";
 
 /** Print out usage information and quit. */
-JSDOC.usage = function () {
+JSDOC.usage = function() {
 	print("USAGE: java -jar jsrun.jar app/run.js [OPTIONS] <SRC_DIR> <SRC_FILE> ...");
 	print("");
 	print("OPTIONS:");
@@ -71,36 +71,36 @@ JSDOC.usage = function () {
 	print("  -u or --unique\n          Force file names to be unique, but not based on symbol names.\n");
 	print("  -v or --verbose\n          Provide verbose feedback about what is happening.\n");
 	print("  -x=<EXT>[,EXT]... or --ext=<EXT>[,EXT]...\n          Scan source files with the given extension/s (defaults to js).\n");
-
+	
 	quit();
 }
 
 /*t:
- plan(4, "Testing JSDOC namespace.");
-
- is(
- typeof JSDOC,
- "object",
- "JSDOC.usage is a function."
- );
-
- is(
- typeof JSDOC.VERSION,
- "string",
- "JSDOC.VERSION is a string."
- );
-
- is(
- typeof JSDOC.usage,
- "function",
- "JSDOC.usage is a function."
- );
-
- is(
- typeof JSDOC.opt,
- "object",
- "JSDOC.opt is a object."
- );
+	plan(4, "Testing JSDOC namespace.");
+	
+	is(
+		typeof JSDOC,
+		"object",
+		"JSDOC.usage is a function."
+	);
+	
+	is(
+		typeof JSDOC.VERSION,
+		"string",
+		"JSDOC.VERSION is a string."
+	);
+	
+	is(
+		typeof JSDOC.usage,
+		"function",
+		"JSDOC.usage is a function."
+	);
+	
+	is(
+		typeof JSDOC.opt,
+		"object",
+		"JSDOC.opt is a object."
+	);
  */
 
 if (this.IO) IO.includeDir("lib/JSDOC/");
