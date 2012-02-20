@@ -27,12 +27,19 @@ if (CONFIG.hasOwnProperty('options')) {
 		}
 	}
 
-	JSHint.setOptions(options);
+	if (options !== '') {
+		JSHint.setOptions(options);
+	}
 }
 
 JSHint.setFail(CONFIG.fail !== false);
 
-JSHint.setIncludes(CONFIG.hasOwnProperty('includes') ? CONFIG.includes.join(',') : '*');
-JSHint.setExcludes(CONFIG.hasOwnProperty('excludes') ? CONFIG.includes.join(',') : '*');
+if (CONFIG.hasOwnProperty('includes')) {
+	JSHint.setIncludes(CONFIG.includes.join(','));
+}
+
+if (CONFIG.hasOwnProperty('excludes')) {
+	JSHint.setExcludes(CONFIG.includes.join(','));
+}
 
 JSHint.execute();

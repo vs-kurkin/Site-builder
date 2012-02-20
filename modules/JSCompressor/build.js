@@ -25,8 +25,8 @@ for (var fileName in CONFIG.files) {
 
 		AntApi.runTarget(project, 'concat', {
 			'file.name': fileName,
-			'includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '*',
-			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '*',
+			'includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '',
+			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '',
 			'casesensitive': fileData.hasOwnProperty('caseSensitive') ? !!fileData.caseSensitive : false
 		});
 
