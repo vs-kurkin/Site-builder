@@ -8,18 +8,18 @@ importClass(java.io.File);
 importClass(java.io.FileReader);
 importClass(java.io.BufferedReader);
 
-var configFilePath = project.getProperty('path.config');
+var configFilePath = project.getProperty('config');
 
 if (configFilePath == null || !configFilePath.length) {
 	var input = project.createTask('input');
-	input.setMessage('Enter path to config file');
-	input.setAddproperty('path.config');
+	input.setMessage('Enter path to "config" file');
+	input.setAddproperty('config');
 	input.execute();
 
-	configFilePath = project.getProperty('path.config');
+	configFilePath = project.getProperty('config');
 
 	if (!configFilePath.length) {
-		throw 'Property "path.config" not specified';
+		throw 'Property "config" not specified';
 	}
 }
 
