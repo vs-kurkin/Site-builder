@@ -8,8 +8,6 @@
 <project default="build">
 	<property file="build.properties" />
 
-	<script language="javascript" src="${TOOLDIR}/JSON.js" />
-
 	<taskdef name="jshint"
 					 classname="com.philmander.ant.jshint.JsHintAntTask"
 					 classpath="${jshint.path.task}" />

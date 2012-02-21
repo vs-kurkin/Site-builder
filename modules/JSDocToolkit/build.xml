@@ -7,8 +7,6 @@
 <project default="build">
 	<property file="build.properties" />
 
-	<script language="javascript" src="${TOOLDIR}/JSON.js" />
-
 	<target name="build">
 		<script language="javascript" src="${HOMEDIR}/build.js" />
 	</target>

@@ -9,7 +9,6 @@
 
 	<taskdef name="compiler" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${compiler.path}" />
 
-	<script language="javascript" src="${TOOLDIR}/JSON.js" />
 	<script language="javascript" src="${TOOLDIR}/AntApi.js" />
 
 	<target name="concat">

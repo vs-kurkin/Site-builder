@@ -14,7 +14,6 @@
 		</classpath>
 	</taskdef>
 
-	<script language="javascript" src="${TOOLDIR}/JSON.js" />
 	<script language="javascript" src="${TOOLDIR}/AntApi.js" />
 
 	<target name="concat">
