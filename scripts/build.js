@@ -1,7 +1,7 @@
 /*
- * Copyright (c) Site builder.
- * Source: https://github.com/B-Vladi/Site-builder
- * Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ Copyright (c) Site builder.
+ Source: https://github.com/B-Vladi/Site-builder
+ Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 var stack = [],
@@ -24,38 +24,32 @@ if (moduleName == null) {
 	throw 'The module "' + moduleName + '" is not defined';
 }
 
-while (true) {
-	module = stack[index];
+while (module = stack[index]) {
+	moduleName = module.name;
 
-	if (module) {
-		moduleName = module.name;
-
-		if (modulesInStack.hasOwnProperty(moduleName)) {
-			stack.splice(index, 1);
-		} else {
-			var dependsIndex = 0;
-			depends = module.depends;
-			length = depends ? depends.length : 0;
-
-			while (dependsIndex < length) {
-				var dependModuleName = depends[dependsIndex++];
-
-				if (MODULES.hasOwnProperty(dependModuleName)) {
-					if (!modulesInStack.hasOwnProperty(dependModuleName)) {
-						stack.splice(index, 0, MODULES[dependModuleName]);
-						modulesInStack[dependModuleName] = true;
-						index++;
-					}
-				} else {
-					throw 'Module "' + dependModuleName + '", depending on the module "' + moduleName + '" is not defined';
-				}
-			}
-
-			modulesInStack[moduleName] = true;
-			index++;
-		}
+	if (modulesInStack.hasOwnProperty(moduleName)) {
+		stack.splice(index, 1);
 	} else {
-		break;
+		var dependsIndex = 0;
+		depends = module.depends;
+		length = depends ? depends.length : 0;
+
+		while (dependsIndex < length) {
+			var dependModuleName = depends[dependsIndex++];
+
+			if (MODULES.hasOwnProperty(dependModuleName)) {
+				if (!modulesInStack.hasOwnProperty(dependModuleName)) {
+					stack.splice(index, 0, MODULES[dependModuleName]);
+					modulesInStack[dependModuleName] = true;
+					index++;
+				}
+			} else {
+				throw 'Module "' + dependModuleName + '", depending on the module "' + moduleName + '" is not defined';
+			}
+		}
+
+		modulesInStack[moduleName] = true;
+		index++;
 	}
 }
 
