@@ -9,6 +9,16 @@ importClass(java.io.File);
 var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')),
 	cleanDir = project.createTask('delete');
 
+function runTarget(project, name, properties) {
+	for (var propertyName in properties) {
+		if (properties.hasOwnProperty(propertyName)) {
+			project.setProperty(propertyName, properties[propertyName]);
+		}
+	}
+
+	project.getTargets().get(name).execute();
+}
+
 if (CONFIG.hasOwnProperty('baseDir')) {
 	project.setBaseDir(new File(basedir, CONFIG.baseDir));
 }
@@ -23,7 +33,7 @@ for (var fileName in CONFIG.files) {
 	if (CONFIG.files.hasOwnProperty(fileName)) {
 		var fileData = CONFIG.files[fileName];
 
-		AntApi.runTarget(project, 'concat', {
+		runTarget(project, 'concat', {
 			'file.name': fileName,
 			'includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '',
 			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '',
@@ -31,13 +41,13 @@ for (var fileName in CONFIG.files) {
 		});
 
 		if (fileData.compile !== false) {
-			AntApi.runTarget(project, 'compile', {
+			runTarget(project, 'compile', {
 				'file.name': fileName
 			});
 		}
 
 		if (CONFIG.gZipped !== false) {
-			AntApi.runTarget(project, 'gZipped', {
+			runTarget(project, 'gZipped', {
 				'file.name': fileName
 			});
 		}

@@ -14,8 +14,6 @@
 		</classpath>
 	</taskdef>
 
-	<script language="javascript" src="${TOOLDIR}/AntApi.js" />
-
 	<target name="concat">
 		<concat destfile="${destination.dir}/${file.name}" append="true">
 			<fileset dir="${source.dir}" casesensitive="${casesensitive}" includes="${includes}" excludes="${excludes}" />
@@ -35,6 +33,9 @@
 	</target>
 
 	<target name="build">
-		<script language="javascript" src="${HOMEDIR}/build.js" />
+		<script classpath="${LIBDIR}/commons-logging-1.1.1.jar;${LIBDIR}/bsf.jar;${LIBDIR}/rhino.jar"
+						manager="bsf"
+						language="javascript"
+						src="${HOMEDIR}/build.js" />
 	</target>
 </project>
