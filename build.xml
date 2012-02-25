@@ -25,5 +25,6 @@
 	</target>
 
 	<!-- Initialize -->
-	<script language="javascript" src="${scripts.dir}/init.js" />
+	<script language="javascript" src="${scripts.dir}/loadConfig.js" />
+	<script language="javascript" src="${scripts.dir}/initModules.js" />
 </project>
