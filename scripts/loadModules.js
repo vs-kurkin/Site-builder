@@ -28,6 +28,7 @@ Module.prototype.init = function () {
 	this.project.setBaseDir(this.homeDir);
 	this.project.setProperty('HOMEDIR', this.homeDir.getAbsolutePath());
 	this.project.setProperty('TOOLDIR', project.getProperty('tools.dir'));
+	this.project.setProperty('LIBDIR', project.getProperty('libs.dir'));
 
 	ProjectHelper.configureProject(this.project, this.buildFile);
 
