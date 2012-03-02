@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Name: Site builder.
   Authors:
     Vladislav Kurkin (b-vladi@cs-console.ru)
@@ -13,6 +12,10 @@
 	<property file="build.properties" />
 
 	<!-- Load addons -->
+	<taskdef name="script"
+					 classname="org.apache.tools.ant.taskdefs.optional.Script"
+					 classpath="${libs.dir}/commons-logging-1.1.1.jar;${libs.dir}/bsf.jar;${libs.dir}/rhino.jar" />
+
 	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${libs.dir}/ant-contrib-1.0b3.jar" />
 
 	<!-- Define targets -->
