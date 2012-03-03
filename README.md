@@ -1,7 +1,7 @@
 # Site builder #
 Платформо-независимый инструмент пакетного преобразования ресурсов проекта.
 
-### Установка. ###
+## Установка.
 Сборщик основан на базе ANT-а, поэтому в системе должны присутствовать следующие программные продукты:
 
 * Java: http://www.java.com/
@@ -9,7 +9,7 @@
 
 Процесс установки сборщика в систему отсутствует, достаточно просто скопировать его файлы.
 
-### Настройка. ###
+## Настройка.
 Основной конфигурационный файл сборщика имеет формат JSON, и описывает модули, учавствующие в сборке проекта:
 
 	{
@@ -30,7 +30,7 @@
 
 Модули реализуют собственную логику обработки своих конфигурационных файлов, поэтому их структура описана отдельно в каждом конкретном моделе.
 
-### Запуск. ###
+## Запуск.
 Если в систему устанавливается утилита ANT стандартным способом, запуск может быть выполнен командой ant:
 
 `ant path/to/build.xml -Dconfig=path/to/main/config.json`
@@ -46,7 +46,10 @@
 
 Если версия Java меньше 7, необходимо указать пути к файлам классов из папки lib:
 
-`ant -lib=path/to/builder/lib/bsf.jar;path/to/builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json`
+`ant
+	-lib=path/to/builder/lib/bsf.jar;path/to/builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar
+	-buildfile=path/to/build.xml
+	-Dconfig=path/to/main/config.json`
 
 или для Java:
 
