@@ -23,6 +23,10 @@ if (CONFIG.hasOwnProperty('baseDir')) {
 	project.setBaseDir(new File(basedir, CONFIG.baseDir));
 }
 
+if (!CONFIG.hasOwnProperty('compile')) {
+	CONFIG.compile = false;
+}
+
 project.setProperty('source.dir', CONFIG.sourceDir);
 project.setProperty('destination.dir', CONFIG.destinationDir);
 
@@ -36,11 +40,10 @@ for (var fileName in CONFIG.files) {
 		runTarget(project, 'concat', {
 			'file.name': fileName,
 			'includes': fileData.hasOwnProperty('includes') ? fileData.includes.join(',') : '',
-			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : '',
-			'casesensitive': fileData.hasOwnProperty('caseSensitive') ? !!fileData.caseSensitive : false
+			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : ''
 		});
 
-		if (fileData.compile !== false) {
+		if (fileData.compile !== false || CONFIG.compile !== false) {
 			runTarget(project, 'compile', {
 				'file.name': fileName
 			});

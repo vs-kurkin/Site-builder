@@ -79,7 +79,7 @@ MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 * Компиляция. Используется Google Closure Compiler: https://developers.google.com/closure/compiler/.
 * GZip-сжатие. Исходные файлы не заменяются. Сжатые файлы располагаются рядом с результирующими файлами с расширением "gz".
 
-Конфигурационный файл в формате JSON:
+Конфигурационный файл модуля в формате JSON:
 
 	{
 		"baseDir": "", // Базовая дирректория для всех путей.

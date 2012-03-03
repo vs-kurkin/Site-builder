@@ -8,9 +8,7 @@
 	<property file="build.properties" />
 
 	<target name="build">
-		<script classpath="${LIBDIR}/commons-logging-1.1.1.jar;${LIBDIR}/bsf.jar;${LIBDIR}/rhino.jar"
-						manager="bsf"
-						language="javascript"
+		<script language="javascript"
 						src="${HOMEDIR}/build.js" />
 	</target>
 </project>
