@@ -24,7 +24,7 @@
 
 Путь к основному конфигурационному файлу указывается в параметре запуска сборщика в виде свойства с именем config:
 
-`-Dconfig=path/to/main/config.json`
+	-Dconfig=path/to/main/config.json
 
 Если это свойство не было указано, стандартный ввод будет ожидать указания пути.
 
@@ -33,34 +33,34 @@
 ### Запуск.
 Если в систему устанавливается утилита ANT стандартным способом, запуск может быть выполнен командой ant:
 
-`ant path/to/build.xml -Dconfig=path/to/main/config.json`
+	ant path/to/build.xml -Dconfig=path/to/main/config.json
 
 или с явным указанием имени параметра:
 
-`ant -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json`
+	ant -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 Здесь так же указан путь к сценарию сборки ANT, которым является файл сборщика build.xml.
 В случае, когда ANT не зарегистрирован в системе, запуск необходимо производить командой java с явным указанием пути к исполняющему файлу ANT:
 
-`java -jar path/to/ant.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json`
+	java -jar path/to/ant.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 Если версия Java меньше 7, необходимо указать пути к файлам классов из папки lib:
 
-	ant -lib=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
+	ant -lib=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 или для Java:
 
-`java -classpath=path/to/builder/lib/bsf.jar;path/to/builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar -jar path/to/ant.jar  -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json`
+	java -classpath=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;builder/lib/rhino.jar -jar path/to/ant.jar  -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 Подробнее о запуске ANT описано здесь: http://ant.apache.org/manual/runninglist.html
 
 По-умолчанию сборщик запускаеп все модули, указанные в общем конфигурационном файле (цель build). Тем не менее имеется возможность явно указать имена выполняемых модулей:
 
-`ant path/to/build.xml -Dconfig=path/to/main/config.json "First Module" "Second Module" "..."`
+	ant path/to/build.xml -Dconfig=path/to/main/config.json "First Module" "Second Module" "..."
 
 Другими словами: в сценарии запуска ANT (build.xml) динамически создаются цели с именами, соответствующими именам модулей, которые указаны в общем конфигурационном файле. В данном случае здесь перечислены имена целей, которые будут выполнены ANT-ом.
 Так же существует цель с именем "Run module", при выполнении которой будет выдан запрос на ввод имени модуля:
 
-`ant path/to/build.xml -Dconfig=path/to/main/config.json "Run module"`
+	ant path/to/build.xml -Dconfig=path/to/main/config.json "Run module"
 
 Зависимые модули в любом случае будут выполнены как описано выше.
