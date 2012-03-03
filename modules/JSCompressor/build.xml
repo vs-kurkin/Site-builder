@@ -22,7 +22,6 @@
 	</target>
 
 	<target name="compile">
-		<echo>${compiler.externs}</echo>
 		<compiler compilationlevel="${compilation.level}"
 							warning="${warning}"
 							output="${file.path}.tmp">
