@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Name: Site builder.
-  Authors:
-    Vladislav Kurkin (b-vladi@cs-console.ru)
-    Kanivetsky Yuri (yuri.kanivetsky@gmail.com)
-
-  Description: Build sources of site with use modules.
+  Copyright (c) Site builder.
+  Source: https://github.com/B-Vladi/Site-builder
+  Author: Vlad Kurkin, b-vladi@cs-console.ru.
   -->
 
-<project name="Site Builder" basedir="." default="build">
+<project name="Site Builder"
+				 basedir="."
+				 default="build">
 	<!-- Load properties -->
 	<property file="build.properties" />
 
-	<!-- Load addons -->
-	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${libs.dir}/ant-contrib-1.0b3.jar" />
-
 	<!-- Define targets -->
-	<target name="Run module" description="Run the specified module.">
-		<script language="javascript" src="${scripts.dir}/runModule.js" />
+	<target name="Run module"
+					description="Run the specified module.">
+		<script language="javascript"
+						src="${scripts.dir}/runModule.js" />
 	</target>
 
-	<target name="build" description="Default target. Run all the modules.">
-		<script language="javascript" src="${scripts.dir}/build.js" />
+	<target name="build"
+					description="Default target. Run all the modules.">
+		<script language="javascript"
+						src="${scripts.dir}/build.js" />
 	</target>
 
 	<!-- Initialize -->
-	<script language="javascript" src="${scripts.dir}/loadConfig.js" />
-	<script language="javascript" src="${scripts.dir}/initModules.js" />
+	<script language="javascript"
+					src="${scripts.dir}/loadConfig.js" />
+
+	<script language="javascript"
+					src="${scripts.dir}/initModules.js" />
 </project>
