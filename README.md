@@ -1,5 +1,10 @@
 # Site builder #
+https://github.com/B-Vladi/Site-builder/
+
 Платформо-независимый инструмент пакетного преобразования ресурсов проекта.
+
+### Лицензия.
+MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 
 ### Установка.
 Сборщик основан на базе ANT-а, поэтому в системе должны присутствовать следующие программные продукты:
@@ -59,6 +64,7 @@
 	ant path/to/build.xml -Dconfig=path/to/main/config.json "First Module" "Second Module" "..."
 
 Другими словами: в сценарии запуска ANT (build.xml) динамически создаются цели с именами, соответствующими именам модулей, которые указаны в общем конфигурационном файле. В данном случае здесь перечислены имена целей, которые будут выполнены ANT-ом.
+
 Так же существует цель с именем "Run module", при выполнении которой будет выдан запрос на ввод имени модуля:
 
 	ant path/to/build.xml -Dconfig=path/to/main/config.json "Run module"
