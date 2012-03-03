@@ -13,7 +13,7 @@
 Основной конфигурационный файл сборщика имеет формат JSON, и описывает модули, учавствующие в сборке проекта:
 
 	{
-		"moduleName": {
+		"moduleName": { // Имя модуля
 			"configs": [], // Конфигурация модуля. Массив строк или JSON-объектов.
 				// Строки воспринимаются как пути к конфигурационным файлам модуля относительно этого файла.
 				// Если конфигурационный файл модуля имеет формат JSON, его код может быть указан в этом массиве JSON объекта.
@@ -46,10 +46,7 @@
 
 Если версия Java меньше 7, необходимо указать пути к файлам классов из папки lib:
 
-`ant
-	-lib=path/to/builder/lib/bsf.jar;path/to/builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar
-	-buildfile=path/to/build.xml
-	-Dconfig=path/to/main/config.json`
+	ant -lib=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 или для Java:
 
