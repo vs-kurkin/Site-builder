@@ -123,7 +123,7 @@ MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 	}
 
 ### JSDocToolkit
-Генератор документации JavaScript-файлов на основе JSDoc Toolkit 2.4.0: http://code.google.com/p/jsdoc-toolkit/
+Генератор документации JavaScript-файлов на основе JSDoc Toolkit 2.4.0: http://code.google.com/p/jsdoc-toolkit/.
 Большинство параметров соответствуют опциям командной строки: http://code.google.com/p/jsdoc-toolkit/wiki/CommandlineOptions
 
 Конфигурационный файл модуля в формате JSON:
