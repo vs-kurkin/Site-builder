@@ -24,7 +24,7 @@ if (CONFIG.hasOwnProperty('baseDir')) {
 }
 
 if (!CONFIG.hasOwnProperty('compile')) {
-	CONFIG.compile = false;
+	CONFIG.compile = true;
 }
 
 project.setProperty('source.dir', CONFIG.sourceDir);
@@ -43,7 +43,7 @@ for (var fileName in CONFIG.files) {
 			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : ''
 		});
 
-		if (fileData.compile !== false || CONFIG.compile !== false) {
+		if (!(fileData.compile === false && CONFIG.compile === false)) {
 			runTarget(project, 'compile', {
 				'file.name': fileName
 			});

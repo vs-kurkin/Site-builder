@@ -47,36 +47,21 @@ if (CONFIG.hasOwnProperty('configFile') && CONFIG.configFile != '') {
 		javaTask.createArg().setValue('-o=' + CONFIG.logFile);
 	}
 
-	if (CONFIG.hasOwnProperty('inputDir') && CONFIG.inputDir != '') {
-		var depth = Number(CONFIG.depth),
-			arg = javaTask.createArg();
+	var fileSet = project.createDataType('fileset');
+	fileSet.setDir(project.getBaseDir());
 
-		if (isNaN(depth)) {
-			arg.setValue('-r=10');
-		} else if (depth < 0) {
-			arg.setValue('-r');
-		} else {
-			arg.setValue('-r=' + depth);
-		}
+	if (CONFIG.hasOwnProperty('excludes')) {
+		fileSet.setExcludes(CONFIG.excludes.join(','));
+	}
 
-		javaTask.createArg().setValue(CONFIG.inputDir);
-	} else {
-		var fileSet = project.createDataType('fileset');
-		fileSet.setDir(project.getBaseDir());
+	if (CONFIG.hasOwnProperty('includes')) {
+		fileSet.setIncludes(CONFIG.includes.join(','));
+	}
 
-		if (CONFIG.hasOwnProperty('excludes')) {
-			fileSet.setExcludes(CONFIG.excludes.join(','));
-		}
+	var iterator = fileSet.iterator();
 
-		if (CONFIG.hasOwnProperty('includes')) {
-			fileSet.setIncludes(CONFIG.includes.join(','));
-		}
-
-		var iterator = fileSet.iterator();
-
-		while (iterator.hasNext()) {
-			javaTask.createArg().setValue(iterator.next());
-		}
+	while (iterator.hasNext()) {
+		javaTask.createArg().setValue(iterator.next());
 	}
 
 	if (CONFIG.hasOwnProperty('arguments')) {

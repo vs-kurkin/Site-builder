@@ -24,7 +24,7 @@ if (CONFIG.hasOwnProperty('baseDir')) {
 }
 
 if (!CONFIG.hasOwnProperty('compile')) {
-	CONFIG.compile = false;
+	CONFIG.compile = 'simple';
 }
 
 project.setProperty('warning', CONFIG.hasOwnProperty('warning') ? CONFIG.warning : 'default');
@@ -49,11 +49,15 @@ for (var fileName in CONFIG.files) {
 			'excludes': fileData.hasOwnProperty('excludes') ? fileData.excludes.join(',') : ''
 		});
 
-		if (fileData.compile !== false || CONFIG.compile !== false) {
+		if (!fileData.hasOwnProperty('compile')) {
+			fileData.compile = CONFIG.compile;
+		}
+
+		if (!(fileData.compile === false && CONFIG.compile === false)) {
 			runTarget(project, 'compile', {
 				'file.name': fileName,
 				'file.path': CONFIG.destinationDir + '/' + fileName,
-				'compilation.level': fileData.hasOwnProperty('compile') ? fileData.compile : CONFIG.compile
+				'compilation.level': fileData.compile
 			});
 		}
 
