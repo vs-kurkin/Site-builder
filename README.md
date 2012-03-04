@@ -1,4 +1,4 @@
-# Site builder #
+# Site builder 1.0 #
 https://github.com/B-Vladi/Site-builder/
 
 Платформо-независимый инструмент пакетного преобразования ресурсов проекта.
