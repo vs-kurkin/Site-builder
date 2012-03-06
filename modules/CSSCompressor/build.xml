@@ -7,7 +7,8 @@
 <project default="build">
 	<property file="build.properties" />
 
-	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+	<taskdef name="yui-compressor"
+					 classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
 		<classpath>
 			<pathelement location="${compiler.path}" />
 			<pathelement location="${compiler.path.task}" />
@@ -15,24 +16,34 @@
 	</taskdef>
 
 	<target name="concat">
-		<concat destfile="${destination.dir}/${file.name}" append="true">
-			<fileset dir="${source.dir}" casesensitive="${casesensitive}" includes="${includes}" excludes="${excludes}" />
+		<concat destfile="${destination.dir}/${file.name}"
+						append="true">
+			<fileset dir="${source.dir}"
+							 casesensitive="true"
+							 includes="${includes}"
+							 excludes="${excludes}" />
 		</concat>
 	</target>
 
 	<target name="compile">
-		<yui-compressor fromdir="${destination.dir}" todir="${destination.dir}" includes="${file.name}" warn="${warning}" />
+		<yui-compressor fromdir="${destination.dir}"
+										todir="${destination.dir}"
+										includes="${file.name}"
+										warn="${warning}" />
 
 		<move tofile="${destination.dir}/${file.name}">
-			<fileset dir="${destination.dir}" includes="*-min.*" />
+			<fileset dir="${destination.dir}"
+							 includes="*-min.*" />
 		</move>
 	</target>
 
 	<target name="gZipped">
-		<gzip src="${destination.dir}/${file.name}" destfile="${destination.dir}/${file.name}.gz" />
+		<gzip src="${destination.dir}/${file.name}"
+					destfile="${destination.dir}/${file.name}.gz" />
 	</target>
 
 	<target name="build">
-		<script language="javascript" src="${HOMEDIR}/build.js" />
+		<script language="javascript"
+						src="${HOMEDIR}/build.js" />
 	</target>
 </project>

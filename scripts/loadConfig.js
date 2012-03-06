@@ -30,10 +30,14 @@ if (!configFile) {
 
 project.setProperty('CONFIG.DIR', configFile.getParentFile());
 
-var buffer = new BufferedReader(new FileReader(configFile)), cfgString = '', line;
+var buffer = new BufferedReader(new FileReader(configFile)),
+	cfgString = '',
+	line;
 
 while (line = buffer.readLine()) {
 	cfgString += line;
 }
 
-project.addReference('CONFIG', new Function('return ' + cfgString)());
+self.log('Loaded configuration file from ' + configFilePath);
+
+project.addReference('CONFIG', JSON.parse(cfgString));

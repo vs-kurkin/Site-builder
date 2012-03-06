@@ -1,7 +1,7 @@
 /*
- Copyright (c) Site builder.
- Source: https://github.com/B-Vladi/Site-builder
- Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ * Copyright (c) Site builder.
+ * Source: https://github.com/B-Vladi/Site-builder
+ * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 var stack = [],
@@ -57,6 +57,7 @@ while (module = stack.shift()) {
 	index = 0;
 	length = module.configs.length;
 
+	self.log('Run the "' + module.name + '"');
 	module.init();
 
 	while (index < length) {

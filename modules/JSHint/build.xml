@@ -13,6 +13,7 @@
 					 classpath="${jshint.path.task}" />
 
 	<target name="build">
-		<script language="javascript" src="${HOMEDIR}/build.js" />
+		<script language="javascript"
+						src="${HOMEDIR}/build.js" />
 	</target>
 </project>

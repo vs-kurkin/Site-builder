@@ -1,7 +1,7 @@
 /*
- Copyright (c) Site builder.
- Source: https://github.com/B-Vladi/Site-builder
- Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ * Copyright (c) Site builder.
+ * Source: https://github.com/B-Vladi/Site-builder
+ * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 importClass(java.io.File);
@@ -47,29 +47,33 @@ Module.prototype.init = function () {
 	this.globalTarget.execute();
 };
 
-Module.prototype.run = function (configFilePath) {
-	if (!(typeof configFilePath == 'string' && configFilePath.length)) {
-		throw 'Path to the configuration file for the module ' + this.name + ' is not defined';
+Module.prototype.run = function (config) {
+	if (typeof config == 'string') {
+		config = new File(project.getProperty('CONFIG.DIR'), config);
+
+		if (!(config && config.file)) {
+			throw 'Can not find the configuration file in "' + config + '" for the module "' + this.name + '"';
+		}
+
+		this.project.setProperty('CONFIG.PATH', config.getAbsolutePath());
+		this.project.setBaseDir(config.getParentFile());
+
+		var buffer = new BufferedReader(new FileReader(config)),
+			line;
+
+		config = '';
+
+		while (line = buffer.readLine()) {
+			config += line;
+		}
+	} else {
+		this.project.setBaseDir(new File(project.getProperty('CONFIG.DIR')));
+
+		config = JSON.stringify(config);
 	}
 
-	var configFile = new File(project.getProperty('CONFIG.DIR'), configFilePath);
+	this.project.setProperty('CONFIG.TEXT', config);
 
-	if (!(configFile && configFile.file)) {
-		throw 'Can not find the configuration file in "' + configFilePath + '" for the module "' + this.name + '"';
-	}
-
-	var buffer = new BufferedReader(new FileReader(configFile)),
-		text = '',
-		line;
-
-	while (line = buffer.readLine()) {
-		text += line;
-	}
-
-	this.project.setProperty('CONFIG.TEXT', text);
-	this.project.setProperty('CONFIG.PATH', configFile.getAbsolutePath());
-
-	this.project.setBaseDir(configFile.getParentFile());
 	this.defaultTarget && this.defaultTarget.execute();
 };
 
@@ -83,6 +87,8 @@ for (var name in CONFIG) {
 		}
 
 		var module = MODULES[name] = new Module(name, CONFIG[name]);
+
+		self.log('Registered module "' + module.name + '"');
 
 		var target = new Target();
 		target.setName(name);
