@@ -53,6 +53,11 @@ MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 
 	ant -lib=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
+либо так:
+
+	ant -lib=builder/lib/ -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
+
+
 или для Java:
 
 	java -classpath=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;builder/lib/rhino.jar -jar path/to/ant.jar  -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
