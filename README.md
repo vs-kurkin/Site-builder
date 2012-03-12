@@ -23,7 +23,7 @@ MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 			"configs": [], // Конфигурация модуля. Массив строк или JSON-объектов.
 				// Строки воспринимаются как абсолютные пути к конфигурационным файлам модуля, либо относительно этого файла.
 				// Если конфигурационный файл модуля имеет формат JSON, его код может быть указан в этом массиве в виде JSON объекта.
-			"depends": [] // Массив имён модулей (строка), которые должны быть выполнены до этого модуля.
+			"depends": [] // Массив имён модулей (строк), которые должны быть выполнены до этого модуля.
 				// Порядок выполнения зависимых модулей соответствует порядку их имён в этом массиве.
 		}
 	}
@@ -50,10 +50,6 @@ MIT: https://github.com/appendto/amplify/blob/master/MIT-LICENSE.txt
 	java -jar path/to/ant.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
 Если версия Java меньше 7, необходимо указать пути к файлам классов из папки lib:
-
-	ant -lib=builder/lib/bsf.jar;builder/lib/commons-logging-1.1.1.jar;path/to/builder/lib/rhino.jar -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
-
-либо так:
 
 	ant -lib=builder/lib/ -buildfile=path/to/build.xml -Dconfig=path/to/main/config.json
 
