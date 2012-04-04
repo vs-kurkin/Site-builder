@@ -1,7 +1,7 @@
 /*
- Copyright (c) Site builder.
- Source: https://github.com/B-Vladi/Site-builder
- Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ * Copyright (c) Site builder.
+ * Source: https://github.com/B-Vladi/Site-builder
+ * Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 var stack = [],
