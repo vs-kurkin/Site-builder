@@ -1,7 +1,7 @@
 /*
- * Copyright (c) Site builder.
- * Source: https://github.com/B-Vladi/Site-builder
- * Author: Vlad Kurkin, b-vladi@cs-console.ru.
+ Copyright (c) Site builder.
+ Source: https://github.com/B-Vladi/Site-builder
+ Author: Vlad Kurkin, b-vladi@cs-console.ru.
  */
 
 var input = project.createTask('input');
@@ -10,7 +10,7 @@ input.setAddproperty('moduleName');
 input.execute();
 
 var moduleName = project.getProperty('moduleName');
-if (moduleName != null && moduleName.length) {
+if (moduleName !== null && moduleName.length) {
 	if (MODULES.hasOwnProperty(moduleName)) {
 		project.executeTarget('build');
 	} else {

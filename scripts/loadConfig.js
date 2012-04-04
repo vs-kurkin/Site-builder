@@ -10,7 +10,7 @@ importClass(java.io.BufferedReader);
 
 var configFilePath = project.getProperty('config');
 
-if (configFilePath == null || !configFilePath.length) {
+if (configFilePath === null || !configFilePath.length) {
 	var input = project.createTask('input');
 	input.setMessage('Enter path to "config" file');
 	input.setAddproperty('config');

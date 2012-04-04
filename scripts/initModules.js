@@ -39,7 +39,7 @@ Module.prototype.init = function () {
 	}
 
 	var defaultTargetName = this.project.getDefaultTarget();
-	if (defaultTargetName != null) {
+	if (defaultTargetName !== null) {
 		this.defaultTarget = this.project.getTargets().get(defaultTargetName);
 	}
 
@@ -48,7 +48,7 @@ Module.prototype.init = function () {
 };
 
 Module.prototype.run = function (config) {
-	if (typeof config == 'string') {
+	if (typeof config === 'string') {
 		config = new File(project.getProperty('CONFIG.DIR'), config);
 
 		if (!(config && config.file)) {
@@ -74,7 +74,9 @@ Module.prototype.run = function (config) {
 
 	this.project.setProperty('CONFIG.TEXT', config);
 
-	this.defaultTarget && this.defaultTarget.execute();
+	if (this.defaultTarget) {
+		this.defaultTarget.execute();
+	}
 };
 
 var MODULES = {};
