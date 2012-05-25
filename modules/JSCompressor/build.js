@@ -6,8 +6,7 @@
 
 importClass(java.io.File);
 
-var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT')),
-	cleanDir = project.createTask('delete');
+var CONFIG = JSON.parse(project.getProperty('CONFIG.TEXT'));
 
 function runTarget(project, name, properties) {
 	for (var propertyName in properties) {
@@ -36,8 +35,12 @@ if (CONFIG.hasOwnProperty('fileExterns')) {
 	project.setProperty('compiler.externs.path', project.getBaseDir());
 }
 
-cleanDir.setDir(new File(project.getBaseDir(), CONFIG.destinationDir));
-cleanDir.execute();
+if (CONFIG.cleanDir !== false) {
+	var cleanDir = project.createTask('delete');
+
+	cleanDir.setDir(new File(project.getBaseDir(), CONFIG.destinationDir));
+	cleanDir.execute();
+}
 
 for (var fileName in CONFIG.files) {
 	if (CONFIG.files.hasOwnProperty(fileName)) {
